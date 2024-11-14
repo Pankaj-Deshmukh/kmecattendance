@@ -39,7 +39,7 @@ export default function Home() {
       <InputBox />
       {/* Only render Counter once rollno is available */}
       {rollno && <Counter targetNumber={attendance} duration={1500} rollnumber={rollno} />}
-      {!rollno && <Counter targetNumber={0} duration={1500} rollnumber={"Enter your Roll number"} />}
+      {!rollno && <Counter targetNumber={0} duration={1500} rollnumber={"Enter your Roll number."} />}
       <p className="text-center font-thin font-sans">
         powered by <strong>Pankaj Deshmukh</strong>.
       </p>
