@@ -41,7 +41,7 @@ export default function Home() {
       {rollno && <Counter targetNumber={attendance} duration={1500} rollnumber={rollno} />}
       {!rollno && <Counter targetNumber={0} duration={1500} rollnumber={"Enter your Roll number."} />}
       <p className="text-center font-thin font-sans">
-        powered by <strong>Pankaj Deshmukh</strong>.
+        powered by <strong className="font-semibold text-red-600">Pankaj Deshmukh</strong>.
       </p>
     </div>
   );
