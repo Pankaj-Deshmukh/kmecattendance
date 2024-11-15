@@ -22,20 +22,37 @@ interface AttendanceResponse {
 }
 
 // 245522748075
-// 2022199 - cse
-// 2022392 - csm
+// 2022199 - cse 3rd year
+// 2022392 - csm 3rd year
+// 2022530 - cse 2nd year
+// 2022723 - csm 2nd year
 export async function GET(req:Request){
     let rollno:number = 0;
     const orgRollno = req.headers.get('rollno');
-    if(Number(orgRollno?.substring(6,9))===748){
-        rollno = 2022392 + Number(orgRollno?.substring(9,12));
+    if(Number(orgRollno?.substring(4,6))==22){
+        if(Number(orgRollno?.substring(6,9))===748){
+            rollno = 2022392 + Number(orgRollno?.substring(9,12));
+        }
+        else if(Number(orgRollno?.substring(6,9))===733){
+            rollno = 2022199 + Number(orgRollno?.substring(9,12));
+        }
+        else{
+            console.error("Enter a valid Roll number.");
+        }
     }
-    else if(Number(orgRollno?.substring(6,9))===733){
-        rollno = 2022199 + Number(orgRollno?.substring(9,12));
+    else if(Number(orgRollno?.substring(4,6))==23){
+        if(Number(orgRollno?.substring(6,9))===748){
+            rollno = 2022723 + Number(orgRollno?.substring(9,12));
+        }
+        else if(Number(orgRollno?.substring(6,9))===733){
+            rollno = 2022530 + Number(orgRollno?.substring(9,12));
+        }
+        else{
+            console.error("Enter a valid Roll number.");
+        }
     }
-    else{
-        console.error("Enter a valid Roll number.");
-    }
+    else console.error("Enter a valid Roll number.");
+
     try{
         const res:AttendanceResponse = await axios.post(`http://teleuniv.net.in:81/netra/api.php`,{
             method: 314,
