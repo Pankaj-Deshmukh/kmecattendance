@@ -32,7 +32,7 @@ const Counter: React.FC<CounterProps> = ({ targetNumber, duration = 3000, rollnu
   }, [targetNumber, duration]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
+    <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex items-end">
         <span className="text-9xl font-thin text-gray-400">{count}</span>
         <span className="text-3xl font-light text-gray-400 ml-2 mb-3">%</span>

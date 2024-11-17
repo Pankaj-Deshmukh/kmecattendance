@@ -32,10 +32,10 @@ export default function Home() {
       };
       fetchAttendance();
     }
-  }, [rollno]); // Fetch attendance when rollno changes
+  }, [rollno]);
 
   return (
-    <div className="flex flex-col w-screen h-screen">
+    <div className="flex flex-col w-screen h-screen bg-gray-50">
       <InputBox />
       {/* Only render Counter once rollno is available */}
       {rollno && <Counter targetNumber={attendance} duration={1500} rollnumber={rollno} />}
