@@ -24,11 +24,6 @@ interface DayObject {
 }
 
 
-interface Attendance {
-  dayobjects: DayObject[];
-}
-
-
 export default function Home() {
   const [attendance, setAttendance] = useState<number>(0); // Ensure type is a number
   const [rollno, setRollno] = useState<string | null>(null); // State for storing rollno

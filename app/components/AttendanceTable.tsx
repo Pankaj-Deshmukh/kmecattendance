@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import React, { useState } from "react";
 
 type SessionData = {
@@ -27,9 +28,10 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
       case "0":
         return (
           <span className="text-red-500">
-            <img
+            <Image
               src="/cross.png"
-              style={{ width: "20px", height: "20px" }}
+              width={20}
+              height={20}
               alt="✖️"
             />
           </span>
@@ -37,9 +39,10 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
       case "1":
         return (
           <span className="text-green-500">
-            <img
+            <Image
               src="/check.png"
-              style={{ width: "20px", height: "20px" }}
+              width={20}
+              height={20}
               alt="✔️"
             />
           </span>
@@ -47,9 +50,10 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
       case "2":
         return (
           <span className="text-gray-500">
-            <img
+            <Image
               src="/empty.png"
-              style={{ width: "20px", height: "20px" }}
+              width={20}
+              height={20}
               alt="✔️"
             />
           </span>
@@ -65,7 +69,7 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
 
   return (
     <div className="mx-auto p-4">
-      <div className="max-w-sm rounded-md overflow-hidden shadow-lg bg-white">
+      <div className="max-w-sm overflow-hidden shadow-lg bg-white">
         <table className="min-w-full border-collapse border border-gray-200">
           <thead>
             <tr className="bg-gray-100">
