@@ -6,7 +6,7 @@ interface CounterProps {
   rollnumber: string | null;
 }
 
-const Counter: React.FC<CounterProps> = ({ targetNumber, duration = 3000, rollnumber = 245522748075 }) => {
+const Counter: React.FC<CounterProps> = ({ targetNumber, duration = 3000, rollnumber }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {

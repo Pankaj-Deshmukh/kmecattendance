@@ -60,6 +60,9 @@ export async function GET(req:Request){
         if(Number(orgRollno?.substring(6,9))===733){
             rollno = 2023071 + Number(orgRollno?.substring(9,12));
         }
+        else if(Number(orgRollno?.substring(6,9))===748){
+            return NextResponse.json({ message: "Class data not available" },{ status: 500 });
+        }
         else{
             console.error("Enter a valid Roll number.");
         }
@@ -71,7 +74,7 @@ export async function GET(req:Request){
             method: 314,
             rollno
         });
-        return NextResponse.json(res.data.overallattperformance.totalpercentage);
+        return NextResponse.json(res.data);
     }
     catch(e){
         console.error(e);
