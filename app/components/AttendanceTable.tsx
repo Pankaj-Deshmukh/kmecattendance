@@ -41,8 +41,8 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
           <span className="text-green-500">
             <Image
               src="/check.png"
-              width={20}
-              height={20}
+              width={23}
+              height={23}
               alt="✔️"
             />
           </span>
@@ -54,7 +54,7 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
               src="/empty.png"
               width={20}
               height={20}
-              alt="✔️"
+              alt="o"
             />
           </span>
         ); // Gray circle
