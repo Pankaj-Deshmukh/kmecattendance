@@ -97,7 +97,7 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
                   </td>
 
                   {/* Sessions Column */}
-                  <td className="flex border-b border-gray-300 px-4 py-3">
+                  <td className="flex justify-around border-b border-gray-300 px-4 py-3">
                     {Object.values(dayObject.sessions).map((session, i) => (
                       <span key={i} className="mr-2">
                         {renderSessionIcon(session)}
