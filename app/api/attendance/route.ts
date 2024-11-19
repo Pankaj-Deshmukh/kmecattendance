@@ -27,7 +27,7 @@ interface AttendanceResponse {
 // 2022392 - csm 3rd year 128
 // 2022530 - cse 2nd year 193
 // 2022723 - csm 2nd year 128
-//         - cs  2nd year  ?
+// 2022849 - cs  2nd year  ?
 // 2023071 - cse 1st year 256
 // 2023327 - csm 1st year 128  ???
 
@@ -51,6 +51,9 @@ export async function GET(req:Request){
         }
         else if(Number(orgRollno?.substring(6,9))===733){
             rollno = 2022530 + Number(orgRollno?.substring(9,12));
+        }
+        else if(Number(orgRollno?.substring(6,9))===753){
+            rollno = 2022849 + Number(orgRollno?.substring(9,12));
         }
         else{
             console.error("Enter a valid Roll number.");
