@@ -64,7 +64,8 @@ export async function GET(req:Request){
             rollno = 2023071 + Number(orgRollno?.substring(9,12));
         }
         else if(Number(orgRollno?.substring(6,9))===748){
-            rollno = 2022945 + Number(orgRollno?.substring(9,12));
+            // rollno = 2022945 + Number(orgRollno?.substring(9,12));
+            return NextResponse.json({status:200, message:"not available in bd"});
         }
         else{
             console.error("Enter a valid Roll number.");
