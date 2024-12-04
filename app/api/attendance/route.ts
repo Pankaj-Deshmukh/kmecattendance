@@ -29,7 +29,7 @@ interface AttendanceResponse {
 // 2022723 - csm 2nd year 128
 // 2022849 - cs  2nd year  ?
 // 2023071 - cse 1st year 256
-// 2022944 - csm 1st year 128  ???
+// 2022945 - csm 1st year 128
 
 export async function GET(req:Request){
     let rollno:number = 0;
@@ -64,7 +64,8 @@ export async function GET(req:Request){
             rollno = 2023071 + Number(orgRollno?.substring(9,12));
         }
         else if(Number(orgRollno?.substring(6,9))===748){
-            rollno = 2022944 + Number(orgRollno?.substring(9,12));
+            // rollno = 2022945 + Number(orgRollno?.substring(9,12));
+            return NextResponse.json({status:200, message:"not available in bd"});
         }
         else{
             console.error("Enter a valid Roll number.");
