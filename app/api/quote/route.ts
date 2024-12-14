@@ -5,7 +5,7 @@ export async function GET(){
     try {
         const response = await axios.get('https://zenquotes.io/api/random');
         return NextResponse.json(response.data); // Send the quote data to the frontend
-      } catch () {
-        return NextResponse.json({status:500},{statusText:'Error fetching quote'});
+      } catch (error) {
+        return NextResponse.json({status:500},{statusText:`Error fetching quote: ${error}`});
       }
 }
