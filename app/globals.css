@@ -3,9 +3,10 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-#pacifico-regular {
-  font-family: "Pacifico", cursive;
-  font-weight: 400;
+#caveat {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
   font-style: normal;
 }
 
