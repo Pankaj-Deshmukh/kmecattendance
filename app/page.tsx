@@ -33,7 +33,7 @@ export default function Home() {
   const [rollno, setRollno] = useState<string | null>(null); // State for storing rollno
   const [session, setSession] = useState<DayObject[] | null>(null); // state for storing session data
   const [quote, setQuote] = useState<Quote | null>(null); // state for storing the generated quote
-  const [isClient, setIsClient] = useState<Boolean>(false);
+  const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => {
     // Check for rollno after the component mounts

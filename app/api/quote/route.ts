@@ -1,12 +1,7 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
 
-interface Quote {
-    q: string,
-    a: string,
-    h: string
-  }
-export async function GET(res:Quote){
+export async function GET(){
     try {
         const response = await axios.get('https://zenquotes.io/api/random');
         return NextResponse.json(response.data); // Send the quote data to the frontend
