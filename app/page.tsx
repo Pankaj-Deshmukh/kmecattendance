@@ -82,7 +82,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-screen h-screen bg-gray-50">
-      <h1 id="caveat" className="text-center font-bold mt-2 mb-3">Welcome to Keshav Memorial Engineering College Attendance Tracker!</h1>
+      <h1 id="caveat" className="text-center font-bold mt-2 mb-2">Welcome to Keshav Memorial Engineering College Attendance Tracker!</h1>
+      <hr className="mb-2 border-t-2 border-gray-300" />
       <InputBox />
       {/* Only render Counter once rollno is available */}
       {rollno && <AttendanceTable data={session}/>}

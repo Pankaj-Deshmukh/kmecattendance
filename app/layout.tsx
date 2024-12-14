@@ -29,7 +29,7 @@ export default function RootLayout({
         {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
         {/* Google Analytics Script */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8VVMZCPW7"></script>
         <script
