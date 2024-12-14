@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AttendanceTable from "./components/AttendanceTable";
 import Counter from "./components/Counter";
 import InputBox from "./components/InputBox";
+import './globals.css';
 
 interface SessionData {
   session1: "0" | "1" | "2";
@@ -81,8 +82,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-screen h-screen bg-gray-50">
-      <h1 className="text-center font-bold font-sans mt-2">Welcome to Keshav Memorial Engineering College Attendance Tracker!</h1>
-      <p className="text-center mb-2 font-light text-xs">See your attendance anytime, anywhere &ndash; right at your fingertips.</p>
+      <h1 id="pacifico-regular" className="text-center font-bold mt-2 mb-3">Welcome to Keshav Memorial Engineering College Attendance Tracker!</h1>
       <InputBox />
       {/* Only render Counter once rollno is available */}
       {rollno && <AttendanceTable data={session}/>}
