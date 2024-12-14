@@ -82,13 +82,13 @@ export default function Home() {
   return (
     <div className="flex flex-col w-screen h-screen bg-gray-50">
       <h1 className="text-center font-bold font-sans mt-2">Welcome to Keshav Memorial Engineering College Attendance Tracker!</h1>
-      <p className="text-center mb-2 font-light text-xs">See your attendance anytime, anywhere – right at your fingertips.</p>
+      <p className="text-center mb-2 font-light text-xs">See your attendance anytime, anywhere &ndash; right at your fingertips.</p>
       <InputBox />
       {/* Only render Counter once rollno is available */}
       {rollno && <AttendanceTable data={session}/>}
       {rollno && <Counter targetNumber={attendance} duration={1500} rollnumber={rollno} />}
       {!rollno && <Counter targetNumber={0} duration={1500} rollnumber={"Enter your Roll number."} />}
-      {quote && <p className="text-center text-lg font-semibold mb-3">"{quote.q}" -- <span className="font-light">{quote.a}</span></p>}
+      {quote && <p className="text-center text-lg font-semibold mb-3"> &quot;{quote.q}&quot; &ndash; <span className="font-light">{quote.a}</span></p>}
       <p className="text-center font-thin font-sans mt-5">
         <a href="https://www.linkedin.com/in/pankaj-deshmukh-142573329/">
           powered by <strong className="font-semibold text-red-600">Pankaj Deshmukh</strong>.
