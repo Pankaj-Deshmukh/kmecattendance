@@ -6,8 +6,8 @@ interface CounterProps {
   rollnumber: string | null;
 }
 
-const Counter: React.FC<CounterProps> = ({ targetNumber, duration = 3000, rollnumber }) => {
-  const [count, setCount] = useState(0);
+const Counter: React.FC<CounterProps> = ({ targetNumber, duration=0, rollnumber }) => {
+  const [count, setCount] = useState(100);
 
   useEffect(() => {
     let startTime: number | null = null;
@@ -17,7 +17,9 @@ const Counter: React.FC<CounterProps> = ({ targetNumber, duration = 3000, rollnu
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
       const progressPercentage = Math.min(progress / duration, 1);
-      const currentCount = Math.floor(progressPercentage * targetNumber);
+
+      // Reverse calculation: start at 100 and go down to targetNumber
+      const currentCount = Math.floor(100 - progressPercentage * (100 - targetNumber));
 
       setCount(currentCount);
 
@@ -37,7 +39,7 @@ const Counter: React.FC<CounterProps> = ({ targetNumber, duration = 3000, rollnu
         <span className="text-9xl font-thin text-gray-400">{count}</span>
         <span className="text-3xl font-light text-gray-400 ml-2 mb-3">%</span>
       </div>
-      <p className='font-thin text-s'>Roll no: {rollnumber}</p>
+      <p className="font-thin text-s">Roll no: {rollnumber}</p>
     </div>
   );
 };

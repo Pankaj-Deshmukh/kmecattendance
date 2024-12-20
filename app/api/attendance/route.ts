@@ -73,7 +73,7 @@ export async function GET(req:Request){
     else console.error("Enter a valid Roll number.");
 
     try{
-        const res:AttendanceResponse = await axios.post(`http://teleuniv.net.in:81/netra/api.php`,{
+        const res:AttendanceResponse = await axios.post(`${process.env.ATTENDANCE_URI}`,{
             method: 314,
             rollno
         });
@@ -81,5 +81,6 @@ export async function GET(req:Request){
     }
     catch(e){
         console.error(e);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
