@@ -1,7 +1,6 @@
 import Feedback from '@/app/models/Feedback';
 import dbConnect from '@/app/utils/dbConnect';
-import type { NextApiRequest } from 'next';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 interface FeedbackData {
   name: string;
@@ -9,10 +8,11 @@ interface FeedbackData {
   message: string;
 }
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: NextRequest) {
   await dbConnect();
   try {
-    const { name, email, message }: FeedbackData = req.body;
+    const data = await req.json();
+    const { name, email, message }: FeedbackData = data;
     const feedback = await Feedback.create({ name, email, message });
     return NextResponse.json({ success: true, data: feedback }, {status:200});
   } catch {

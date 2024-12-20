@@ -1,6 +1,6 @@
 'use client';
 import axios from "axios";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import AttendanceTable from "./components/AttendanceTable";
 import Counter from "./components/Counter";
@@ -37,10 +37,10 @@ export default function Home() {
   const [quote, setQuote] = useState<Quote | null>(null); // state for storing the generated quote
   const [isClient, setIsClient] = useState<boolean>(false);
 
-  /* const router = useRouter();
+  const router = useRouter();
   const toFeedBack = ()=>{
     router.push("/feedbackForm");
-  } */
+  }
 
   useEffect(() => {
     // Check for rollno after the component mounts
@@ -87,7 +87,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-screen h-screen bg-gray-50">
-      {/* <button onClick={toFeedBack} className="bg-gray-200 inline-block p-1 px-4 rounded-t-md absolute top-[55%] -rotate-90 right-0 translate-x-10 font-mono shadow-lg">Feed Back</button> */}
+      <button onClick={toFeedBack} className="bg-gray-200 inline-block p-1 px-4 rounded-t-md absolute top-[55%] -rotate-90 right-0 translate-x-10 font-mono shadow-lg">Feed Back</button>
       <h1 className="text-center font-thin mt-2 mb-2">Keshav Memorial Engineering College Attendance Tracker!</h1>
       <hr className="mb-2 border-t-2 border-gray-300" />
       <InputBox />
