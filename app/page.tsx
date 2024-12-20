@@ -24,6 +24,7 @@ interface DayObject {
   holiday: "true" | "false";
   sessions: SessionData;
 }
+
 interface Quote {
   q: string,
   a: string,
