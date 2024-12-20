@@ -8,7 +8,7 @@ interface FeedbackData {
   message: string;
 }
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   await dbConnect();
   try {
     const { name, email, message }: FeedbackData = req.body;
