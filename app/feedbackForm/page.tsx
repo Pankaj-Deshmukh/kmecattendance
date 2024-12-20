@@ -1,5 +1,6 @@
 "use client"
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 interface FormData {
@@ -9,6 +10,7 @@ interface FormData {
 }
 
 const FeedbackForm: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -20,19 +22,25 @@ const FeedbackForm: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await axios.post('/api/feedback', formData);
       console.log(response)
       alert('Feedback submitted successfully!');
       setFormData({ name: '', email: '', message: '' });
+      router.back();
     } catch (error: unknown) {
       if (error instanceof Error) {
         alert(`Error submitting feedback: ${error.message}`);
       } else {
         alert('An unknown error occurred.');
-      }    }
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -68,9 +76,10 @@ const FeedbackForm: React.FC = () => {
         ></textarea>
         <button
           type="submit"
+          disabled={isLoading}
           className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
         >
-          Submit Feedback
+          {isLoading ? 'Submitting...' : 'Submit Feedback'}
         </button>
       </form>
     </div>
