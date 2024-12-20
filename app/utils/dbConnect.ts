@@ -8,9 +8,7 @@ if (!MONGODB_URI) {
 
 async function dbConnect() {
   try {
-    const conn = await mongoose.connect(`${MONGODB_URI}`, {
-      // These options are no longer necessary in modern versions of mongoose
-    });
+    const conn = await mongoose.connect(`${MONGODB_URI}`);
     console.log('MongoDB connected successfully');
     return conn;
   } catch (error) {
