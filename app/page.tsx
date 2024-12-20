@@ -1,6 +1,6 @@
 'use client';
 import axios from "axios";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import AttendanceTable from "./components/AttendanceTable";
 import Counter from "./components/Counter";
@@ -37,10 +37,10 @@ export default function Home() {
   const [quote, setQuote] = useState<Quote | null>(null); // state for storing the generated quote
   const [isClient, setIsClient] = useState<boolean>(false);
 
-  const router = useRouter();
+  /* const router = useRouter();
   const toFeedBack = ()=>{
     router.push("/feedbackForm");
-  }
+  } */
   useEffect(() => {
     // Check for rollno after the component mounts
     const storedRollno = localStorage.getItem("rollno");

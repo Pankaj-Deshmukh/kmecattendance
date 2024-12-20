@@ -24,6 +24,7 @@ const FeedbackForm: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/feedback', formData);
+      console.log(response)
       alert('Feedback submitted successfully!');
       setFormData({ name: '', email: '', message: '' });
     } catch (error: any) {
