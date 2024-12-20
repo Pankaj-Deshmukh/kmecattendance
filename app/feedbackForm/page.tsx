@@ -27,9 +27,12 @@ const FeedbackForm: React.FC = () => {
       console.log(response)
       alert('Feedback submitted successfully!');
       setFormData({ name: '', email: '', message: '' });
-    } catch (error: any) {
-      alert(`Error submitting feedback: ${error.message}`);
-    }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(`Error submitting feedback: ${error.message}`);
+      } else {
+        alert('An unknown error occurred.');
+      }    }
   };
 
   return (
