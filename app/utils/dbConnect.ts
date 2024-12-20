@@ -1,4 +1,4 @@
-import { MongooseModule } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -6,6 +6,17 @@ if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable');
 }
 
-const dbConnect = MongooseModule.forRoot(MONGODB_URI);
+async function dbConnect() {
+  try {
+    const conn = await mongoose.connect(`${MONGODB_URI}`, {
+      // These options are no longer necessary in modern versions of mongoose
+    });
+    console.log('MongoDB connected successfully');
+    return conn;
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    throw new Error('MongoDB connection failed');
+  }
+}
 
 export default dbConnect;
