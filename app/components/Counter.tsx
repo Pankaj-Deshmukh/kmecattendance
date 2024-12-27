@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 interface CounterProps {
   targetNumber: number;
-  duration?: number; // optional duration in milliseconds
+  duration: number; // optional duration in milliseconds
   rollnumber: string | null;
 }
 
-const Counter: React.FC<CounterProps> = ({ targetNumber, duration=0, rollnumber }) => {
+const Counter: React.FC<CounterProps> = ({ targetNumber, duration, rollnumber }) => {
   const [count, setCount] = useState(100);
 
   useEffect(() => {

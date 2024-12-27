@@ -1,9 +1,9 @@
 'use client';
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import AttendanceTable from "./components/AttendanceTable";
 import Counter from "./components/Counter";
+import Footer from "./components/Footer";
 import InputBox from "./components/InputBox";
 import './globals.css';
 
@@ -37,11 +37,6 @@ export default function Home() {
   const [session, setSession] = useState<DayObject[] | null>(null); // state for storing session data
   const [quote, setQuote] = useState<Quote | null>(null); // state for storing the generated quote
   const [isClient, setIsClient] = useState<boolean>(false);
-
-  const router = useRouter();
-  const toFeedBack = ()=>{
-    router.push("/feedbackForm");
-  }
 
   useEffect(() => {
     // Check for rollno after the component mounts
@@ -88,20 +83,19 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-screen h-screen bg-gray-50">
-      <button onClick={toFeedBack} className="bg-gray-200 inline-block p-1 px-4 rounded-t-md absolute top-[55%] -rotate-90 right-0 translate-x-10 font-mono shadow-lg">Feed Back</button>
-      <h1 className="text-center font-thin mt-2 mb-2">Keshav Memorial Engineering College Attendance Tracker!</h1>
-      <hr className="mb-2 border-t-2 border-gray-300" />
+      <h1 className="text-center font-thin mt-2 mb-2 bg-gray-100 text-gray-700 pb-1 border-b border-gray-300">Keshav Memorial Engineering College Attendance Tracker!</h1>
       <InputBox />
       {/* Only render Counter once rollno is available */}
       {rollno && <AttendanceTable data={session}/>}
       {rollno && <Counter targetNumber={attendance} duration={1000} rollnumber={rollno} />}
-      {!rollno && <Counter targetNumber={0} duration={0} rollnumber={"Enter your Roll number."} />}
+      {!rollno && <Counter targetNumber={100} duration={0} rollnumber={"Enter your Roll number."} />}
       {quote && <p className="text-center text-lg font-semibold mb-3"> &quot;{quote.q}&quot; &ndash; <span className="font-light">{quote.a}</span></p>}
       <p className="text-center font-thin font-sans mt-5">
         <a href="https://www.linkedin.com/in/pankaj-deshmukh-142573329/">
           powered by <strong className="font-semibold text-red-600">Pankaj Deshmukh</strong>.
         </a>
       </p>
+      <Footer/>
     </div>
   );
 }

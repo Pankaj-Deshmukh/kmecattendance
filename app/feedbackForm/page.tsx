@@ -44,7 +44,7 @@ const FeedbackForm: React.FC = () => {
   };
 
   return (
-    <div className='flex justify-center items-center w-screen h-screen bg-blue-100'>
+    <div className='flex justify-center items-center w-screen h-screen bg-gray-100'>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white shadow-md rounded-md space-y-4 h-fit">
         <h2 className="text-2xl font-bold text-center text-gray-700">Submit Feedback</h2>
         <input
