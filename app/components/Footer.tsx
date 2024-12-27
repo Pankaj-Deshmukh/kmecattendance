@@ -1,7 +1,4 @@
-import { useRouter } from "next/navigation";
-
 const Footer = () => {
-    const router = useRouter();
   return (
     <footer className="bg-gray-100 text-gray-700 py-2 border-t border-gray-300">
       <div className="container mx-auto px-4 text-center space-y-4">
