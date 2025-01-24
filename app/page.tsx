@@ -17,10 +17,6 @@ interface SessionData {
   session7: "0" | "1" | "2";
 }
 
-interface Error {
-  status:number
-}
-
 interface DayObject {
   day?: string;
   date: string;
