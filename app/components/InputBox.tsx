@@ -2,7 +2,11 @@
 
 import 'react-circular-progressbar/dist/styles.css';
 
-export default function Attendance() {
+interface ChildProps {
+  setRollno: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export default function Attendance({ setRollno }:ChildProps) {
   const handleSubmit = (formData:FormData) => {
     const rollno = formData.get("rollno") as string;
 
@@ -23,7 +27,7 @@ export default function Attendance() {
 
     // Process form data
     localStorage.setItem("rollno", rollno);
-    window.location.reload();
+    setRollno(rollno);
   };
 
   return (

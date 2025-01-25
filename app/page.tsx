@@ -1,7 +1,6 @@
 'use client';
 import axios from "axios";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AttendanceTable from "./components/AttendanceTable";
 import Counter from "./components/Counter";
 import Footer from "./components/Footer";
@@ -32,38 +31,29 @@ interface Quote {
   h: string
 }
 
+
 export default function Home() {
   const [attendance, setAttendance] = useState<number>(0);
-  const [adminRollno, setAdminRollno] = useState<string | null>(null);
   const [rollno, setRollno] = useState<string | null>(null);
-  const [displayRollno, setDisplayRollno] = useState<string | null>(null);
+  const [pwd, setPwd] = useState<string | null>(null);
   const [session, setSession] = useState<DayObject[] | null>(null);
   const [quote, setQuote] = useState<Quote | null>(null);
-
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     // Initialize rollno from localStorage
     const storedRollno = localStorage.getItem("rollno");
+    const password = localStorage.getItem("pwd");
     if (storedRollno) {
       setRollno(storedRollno);
-      setDisplayRollno(storedRollno); // Use the value directly
+      setPwd(password);
     }
-    // Extract and set adminRollno from searchParams
-    const admin = searchParams.get('admin');
-    if (admin) {
-      setAdminRollno(admin);
-      setDisplayRollno(`245522748${admin}`);
-    }
-  }, [searchParams]);
+  }, [rollno]);
 
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
-        const targetRollno = adminRollno ? `245522748${adminRollno}` : rollno;
-        const apiEndpoint = adminRollno ? "/api/adminAttendance" : "/api/attendance";
-        const res = await axios.get(apiEndpoint, {
-          headers: { rollno: targetRollno },
+        const res = await axios.get("/api/attendance", {
+          headers: { rollno, pwd },
         });
 
         const data = res.data;
@@ -82,10 +72,10 @@ export default function Home() {
       }
     };
 
-    if (rollno || adminRollno) {
+    if (rollno) {
       fetchAttendance();
     }
-  }, [rollno, adminRollno]);
+  }, [rollno]);
 
   useEffect(() => {
     const getQuote = async () => {
@@ -107,23 +97,11 @@ export default function Home() {
       <h1 className="text-center font-thin mt-2 mb-2 bg-gray-100 text-gray-700 pb-1 border-b border-gray-300">
         Keshav Memorial Engineering College Attendance Tracker!
       </h1>
-      <InputBox />
-
-      {/* Wrapping AttendanceTable and Counter in Suspense */}
-      <Suspense fallback={<div>Loading attendance...</div>}>
-        {rollno && <AttendanceTable data={session} />}
-      </Suspense>
-
-      <Suspense fallback={<div>Loading counter...</div>}>
-        {rollno && <Counter targetNumber={attendance} duration={1000} rollnumber={displayRollno} />}
-        {!rollno && <Counter targetNumber={100} duration={0} rollnumber={"Enter your Roll number."} />}
-      </Suspense>
-
-      {/* Wrapping Quote section in Suspense */}
-      <Suspense fallback={<div>Loading quote...</div>}>
-        {quote && <p className="text-center text-lg font-semibold mb-3">&quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span></p>}
-      </Suspense>
-
+      <InputBox setRollno={setRollno} />
+      {rollno && <AttendanceTable data={session} />}
+      {rollno && <Counter targetNumber={attendance} duration={1000} rollnumber={rollno} />}
+      {!rollno && <Counter targetNumber={100} duration={0} rollnumber={"Enter your Roll number."} />}
+      {quote && <p className="text-center text-lg font-semibold mb-3">&quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span></p>}
       <p className="text-center font-thin font-sans mt-5">
         <a href="https://www.linkedin.com/in/pankaj-deshmukh-142573329/">
           powered by <strong className="font-semibold text-red-600">Pankaj Deshmukh</strong>.

@@ -34,8 +34,9 @@ interface AttendanceResponse {
 export async function GET(req:Request){
     let rollno:number = 0;
     const orgRollno = req.headers.get('rollno');
-    if(orgRollno?.substring(0,9)=='245522748' && (orgRollno?.substring(9,12)=='075' || orgRollno?.substring(9,12)=='073' || orgRollno?.substring(9,12)=='115')){
-        return NextResponse.json({ error: "Admin don't want to show this Attendance !" }, { status: 500 })
+    const password = req.headers.get('pwd');
+    if(orgRollno==='245522748075' || orgRollno==='245522748073' || orgRollno==='245522748115'){
+        if(password!=='zoro') return NextResponse.json({ error: `Something went wrong while fetching attendance for :${orgRollno}` }, { status: 500 })
     }
     if(Number(orgRollno?.substring(4,6))==22){
         if(Number(orgRollno?.substring(6,9))===748){
