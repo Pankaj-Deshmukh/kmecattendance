@@ -1,7 +1,7 @@
 'use client';
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import AttendanceTable from "./components/AttendanceTable";
 import Counter from "./components/Counter";
 import Footer from "./components/Footer";
@@ -32,7 +32,6 @@ interface Quote {
   h: string
 }
 
-
 export default function Home() {
   const [attendance, setAttendance] = useState<number>(0);
   const [adminRollno, setAdminRollno] = useState<string | null>(null);
@@ -52,9 +51,9 @@ export default function Home() {
     }
     // Extract and set adminRollno from searchParams
     const admin = searchParams.get('admin');
-    if (admin){
+    if (admin) {
       setAdminRollno(admin);
-      setDisplayRollno(`245522748${admin}`)
+      setDisplayRollno(`245522748${admin}`);
     }
   }, [searchParams]);
 
@@ -109,10 +108,22 @@ export default function Home() {
         Keshav Memorial Engineering College Attendance Tracker!
       </h1>
       <InputBox />
-      {rollno && <AttendanceTable data={session} />}
-      {rollno && <Counter targetNumber={attendance} duration={1000} rollnumber={displayRollno} />}
-      {!rollno && <Counter targetNumber={100} duration={0} rollnumber={"Enter your Roll number."} />}
-      {quote && <p className="text-center text-lg font-semibold mb-3">&quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span></p>}
+
+      {/* Wrapping AttendanceTable and Counter in Suspense */}
+      <Suspense fallback={<div>Loading attendance...</div>}>
+        {rollno && <AttendanceTable data={session} />}
+      </Suspense>
+
+      <Suspense fallback={<div>Loading counter...</div>}>
+        {rollno && <Counter targetNumber={attendance} duration={1000} rollnumber={displayRollno} />}
+        {!rollno && <Counter targetNumber={100} duration={0} rollnumber={"Enter your Roll number."} />}
+      </Suspense>
+
+      {/* Wrapping Quote section in Suspense */}
+      <Suspense fallback={<div>Loading quote...</div>}>
+        {quote && <p className="text-center text-lg font-semibold mb-3">&quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span></p>}
+      </Suspense>
+
       <p className="text-center font-thin font-sans mt-5">
         <a href="https://www.linkedin.com/in/pankaj-deshmukh-142573329/">
           powered by <strong className="font-semibold text-red-600">Pankaj Deshmukh</strong>.
