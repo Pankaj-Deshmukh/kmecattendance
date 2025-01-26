@@ -101,8 +101,8 @@ export default function Home() {
       {rollno && <AttendanceTable data={session} />}
       {rollno && <Counter targetNumber={attendance} duration={1000} rollnumber={rollno} />}
       {!rollno && <Counter targetNumber={100} duration={0} rollnumber={"Enter your Roll number."} />}
-      {quote && <p className="text-center text-lg font-semibold mb-3">&quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span></p>}
-      <p className="text-center font-thin font-sans mt-5">
+      {quote && <p className="text-center text-lg font-semibold mb-4">&quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span></p>}
+      <p className="text-center font-thin font-sans">
         <a href="https://www.linkedin.com/in/pankaj-deshmukh-142573329/">
           powered by <strong className="font-semibold text-red-600">Pankaj Deshmukh</strong>.
         </a>
