@@ -1,4 +1,4 @@
-'use client';
+/* 'use client';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AttendanceTable from "./components/AttendanceTable";
@@ -108,6 +108,16 @@ export default function Home() {
         </a>
       </p>
       <Footer />
+    </div>
+  );
+}
+*/
+
+export default function Maintenance() {
+  return (
+    <div style={{ textAlign: "center", marginTop: "20%" }}>
+      <h1>🚧 Site Under Maintenance</h1>
+      <p>We’ll be back in 2 days. Thank you for your patience!</p>
     </div>
   );
 }
