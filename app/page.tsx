@@ -1,11 +1,11 @@
-/* 'use client';
+"use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AttendanceTable from "./components/AttendanceTable";
 import Counter from "./components/Counter";
 import Footer from "./components/Footer";
 import InputBox from "./components/InputBox";
-import './globals.css';
+import "./globals.css";
 
 interface SessionData {
   session1: "0" | "1" | "2";
@@ -26,11 +26,10 @@ interface DayObject {
 }
 
 interface Quote {
-  q: string,
-  a: string,
-  h: string
+  q: string;
+  a: string;
+  h: string;
 }
-
 
 export default function Home() {
   const [attendance, setAttendance] = useState<number>(0);
@@ -99,25 +98,35 @@ export default function Home() {
       </h1>
       <InputBox setRollno={setRollno} />
       {rollno && <AttendanceTable data={session} />}
-      {rollno && <Counter targetNumber={attendance} duration={1000} rollnumber={rollno} />}
-      {!rollno && <Counter targetNumber={100} duration={0} rollnumber={"Enter your Roll number."} />}
-      {quote && <p className="text-center text-lg font-semibold mb-4">&quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span></p>}
+      {rollno && (
+        <Counter
+          targetNumber={attendance}
+          duration={1000}
+          rollnumber={rollno}
+        />
+      )}
+      {!rollno && (
+        <Counter
+          targetNumber={100}
+          duration={0}
+          rollnumber={"Enter your Roll number."}
+        />
+      )}
+      {quote && (
+        <p className="text-center text-lg font-semibold mb-4">
+          &quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span>
+        </p>
+      )}
       <p className="text-center font-thin font-sans">
         <a href="https://www.linkedin.com/in/pankaj-deshmukh-142573329/">
-          powered by <strong className="font-semibold text-red-600">Pankaj Deshmukh</strong>.
+          powered by{" "}
+          <strong className="font-semibold text-red-600">
+            Pankaj Deshmukh
+          </strong>
+          .
         </a>
       </p>
       <Footer />
-    </div>
-  );
-}
-*/
-
-export default function Maintenance() {
-  return (
-    <div style={{ textAlign: "center", marginTop: "20%" }}>
-      <h1>🚧 Site Under Maintenance</h1>
-      <p>We’ll be back in 2 days. Thank you for your patience!</p>
     </div>
   );
 }
