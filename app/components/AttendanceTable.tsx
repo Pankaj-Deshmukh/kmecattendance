@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -17,7 +17,7 @@ type SessionData = {
 };
 
 type Props = {
-  data: SessionData[] | null;
+  data: SessionData[] | [];
 };
 
 const AttendanceTable: React.FC<Props> = ({ data }) => {
@@ -28,34 +28,19 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
       case "0":
         return (
           <span className="text-red-500">
-            <Image
-              src="/cross.png"
-              width={20}
-              height={20}
-              alt="✖️"
-            />
+            <Image src="/cross.png" width={20} height={20} alt="✖️" />
           </span>
         ); // Red cross
       case "1":
         return (
           <span className="text-green-500">
-            <Image
-              src="/check.png"
-              width={23}
-              height={23}
-              alt="✔️"
-            />
+            <Image src="/check.png" width={23} height={23} alt="✔️" />
           </span>
         ); // Green tick
       case "2":
         return (
           <span className="text-gray-500">
-            <Image
-              src="/empty.png"
-              width={20}
-              height={20}
-              alt="o"
-            />
+            <Image src="/empty.png" width={20} height={20} alt="o" />
           </span>
         ); // Gray circle
       default:
@@ -64,7 +49,11 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
   };
 
   if (!data) {
-    return <div className="flex w-screen justify-center items-center mt-4">Loading...</div>; // Show loading state if data is null
+    return (
+      <div className="flex w-screen justify-center items-center mt-4">
+        Loading...
+      </div>
+    ); // Show loading state if data is null
   }
 
   return (
@@ -72,7 +61,10 @@ const AttendanceTable: React.FC<Props> = ({ data }) => {
       <div className="max-w-sm overflow-hidden shadow-lg bg-white">
         <table className="min-w-full border-collapse border border-gray-200">
           <thead>
-            <tr className="bg-gray-100">
+            <tr
+              className="bg-gray-100"
+              onClick={() => setExpanded(!expanded)} // Toggle visibility on first row click
+            >
               <th className="border border-gray-300 px-4 py-2 text-left">
                 Date
               </th>

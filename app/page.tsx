@@ -6,6 +6,7 @@ import Counter from "./components/Counter";
 import Footer from "./components/Footer";
 import InputBox from "./components/InputBox";
 import "./globals.css";
+import SubjectAttendanceTable from "./components/SubjectAttendanceTable";
 
 interface SessionData {
   session1: "0" | "1" | "2";
@@ -31,11 +32,20 @@ interface Quote {
   h: string;
 }
 
+interface Subject {
+  subjectname: string;
+  percentage: number | string;
+  practical: number | string;
+  colorcode1: string | null;
+  colorcode2: string | null;
+}
+
 export default function Home() {
   const [attendance, setAttendance] = useState<number>(0);
   const [rollno, setRollno] = useState<string | null>(null);
   const [pwd, setPwd] = useState<string | null>(null);
-  const [session, setSession] = useState<DayObject[] | null>(null);
+  const [session, setSession] = useState<DayObject[]>([]);
+  const [subAttendance, setSubAttendance] = useState<Subject[]>([]);
   const [quote, setQuote] = useState<Quote | null>(null);
 
   useEffect(() => {
@@ -59,6 +69,7 @@ export default function Home() {
         if (data?.overallattperformance && data?.attandance?.dayobjects) {
           setAttendance(data.overallattperformance.totalpercentage);
           setSession(data.attandance.dayobjects);
+          setSubAttendance(data.overallattperformance.overall);
         } else {
           console.warn("API response missing expected fields:", data);
         }
@@ -92,12 +103,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col w-screen h-screen bg-gray-50">
+    <div className="flex flex-col w-screen h-screen bg-gray-50 mx-auto">
       <h1 className="text-center font-thin mt-2 mb-2 bg-gray-100 text-gray-700 pb-1 border-b border-gray-300">
         Keshav Memorial Engineering College Attendance Tracker!
       </h1>
       <InputBox setRollno={setRollno} />
       {rollno && <AttendanceTable data={session} />}
+      {rollno && <SubjectAttendanceTable overall={subAttendance} />}
       {rollno && (
         <Counter
           targetNumber={attendance}
