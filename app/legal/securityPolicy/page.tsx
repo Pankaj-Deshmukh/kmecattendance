@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Security = () => {
   const [popup, setPopup] = useState<boolean>(false);
-  const [erasebtn, setErasebtn] = useState<String>("Erase Password");
+  const [erasebtn, setErasebtn] = useState<string>("Erase Password");
   const onClose = () => {
     setPopup(false);
   };
