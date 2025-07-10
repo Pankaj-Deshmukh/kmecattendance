@@ -26,12 +26,6 @@ interface DayObject {
   sessions: SessionData;
 }
 
-interface Quote {
-  q: string;
-  a: string;
-  h: string;
-}
-
 interface Subject {
   subjectname: string;
   percentage: number | string;
