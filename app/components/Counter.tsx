@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 interface CounterProps {
   targetNumber: number;
@@ -6,7 +6,11 @@ interface CounterProps {
   rollnumber: string | null;
 }
 
-const Counter: React.FC<CounterProps> = ({ targetNumber, duration, rollnumber }) => {
+const Counter: React.FC<CounterProps> = ({
+  targetNumber,
+  duration,
+  rollnumber,
+}) => {
   const [count, setCount] = useState(100);
 
   useEffect(() => {
@@ -19,7 +23,9 @@ const Counter: React.FC<CounterProps> = ({ targetNumber, duration, rollnumber })
       const progressPercentage = Math.min(progress / duration, 1);
 
       // Reverse calculation: start at 100 and go down to targetNumber
-      const currentCount = Math.floor(100 - progressPercentage * (100 - targetNumber));
+      const currentCount = Math.floor(
+        100 - progressPercentage * (100 - targetNumber)
+      );
 
       setCount(currentCount);
 
@@ -34,7 +40,7 @@ const Counter: React.FC<CounterProps> = ({ targetNumber, duration, rollnumber })
   }, [targetNumber, duration]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-full my-10">
       <div className="flex items-end">
         <span className="text-9xl font-thin text-gray-400">{count}</span>
         <span className="text-3xl font-light text-gray-400 ml-2 mb-3">%</span>

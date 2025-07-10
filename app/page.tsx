@@ -46,7 +46,7 @@ export default function Home() {
   const [pwd, setPwd] = useState<string | null>(null);
   const [session, setSession] = useState<DayObject[]>([]);
   const [subAttendance, setSubAttendance] = useState<Subject[]>([]);
-  const [quote, setQuote] = useState<Quote | null>(null);
+  ``;
 
   useEffect(() => {
     // Initialize rollno from localStorage
@@ -87,21 +87,6 @@ export default function Home() {
     }
   }, [rollno]);
 
-  useEffect(() => {
-    const getQuote = async () => {
-      try {
-        const res = await axios.get("/api/quote");
-        if (Array.isArray(res.data) && res.data[0]) {
-          setQuote(res.data[0]);
-        }
-      } catch (error) {
-        console.error("Error occurred while fetching the quote:", error);
-      }
-    };
-
-    getQuote();
-  }, []);
-
   return (
     <div className="flex flex-col w-screen h-screen bg-gray-50 mx-auto">
       <h1 className="text-center font-thin mt-2 mb-2 bg-gray-100 text-gray-700 pb-1 border-b border-gray-300">
@@ -123,11 +108,6 @@ export default function Home() {
           duration={0}
           rollnumber={"Enter your Roll number."}
         />
-      )}
-      {quote && (
-        <p className="text-center text-lg font-semibold mb-4">
-          &quot;{quote.q}&quot; – <span className="font-light">{quote.a}</span>
-        </p>
       )}
       <p className="text-center font-thin font-sans">
         <a href="https://www.linkedin.com/in/pankaj-deshmukh-142573329/">
