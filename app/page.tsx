@@ -40,7 +40,6 @@ export default function Home() {
   const [pwd, setPwd] = useState<string | null>(null);
   const [session, setSession] = useState<DayObject[]>([]);
   const [subAttendance, setSubAttendance] = useState<Subject[]>([]);
-  ``;
 
   useEffect(() => {
     // Initialize rollno from localStorage
