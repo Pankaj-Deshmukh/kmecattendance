@@ -40,6 +40,7 @@ export default function Home() {
   const [pwd, setPwd] = useState<string | null>(null);
   const [session, setSession] = useState<DayObject[]>([]);
   const [subAttendance, setSubAttendance] = useState<Subject[]>([]);
+  const [name, setName] = useState<string | null>(null);
 
   useEffect(() => {
     // Initialize rollno from localStorage
@@ -49,10 +50,11 @@ export default function Home() {
       setRollno(storedRollno);
       setPwd(password);
     }
-  }, [rollno]);
+  }, []);
 
   useEffect(() => {
     const fetchAttendance = async () => {
+      if (!rollno) return;
       try {
         const res = await axios.get("/api/attendance", {
           headers: { rollno, pwd },
@@ -78,6 +80,24 @@ export default function Home() {
     if (rollno) {
       fetchAttendance();
     }
+  }, [rollno, pwd]);
+
+  useEffect(() => {
+    const fetchName = async () => {
+      if (!rollno) return;
+      try {
+        const res = await axios.post("/api/studentName", {
+          rollNumber: rollno,
+        });
+
+        if (res.data.name) {
+          setName(res.data.name);
+        }
+      } catch (error) {
+        console.error("Could not fetch student name:", error);
+      }
+    };
+    fetchName();
   }, [rollno]);
 
   return (
@@ -93,6 +113,7 @@ export default function Home() {
           targetNumber={attendance}
           duration={1000}
           rollnumber={rollno}
+          name={name}
         />
       )}
       {!rollno && (
@@ -100,6 +121,7 @@ export default function Home() {
           targetNumber={100}
           duration={0}
           rollnumber={"Enter your Roll number."}
+          name={name}
         />
       )}
       <p className="text-center font-thin font-sans">
